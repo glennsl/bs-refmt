@@ -1,5 +1,6 @@
 {
   "name": "bs-refmt",
+  "description": "BuckleScript bindings to refmt.js",
   "version": "0.1.0",
   "scripts": {
     "build": "bsb -make-world",
@@ -7,10 +8,18 @@
     "clean": "bsb -clean-world"
   },
   "keywords": [
-    "BuckleScript"
+    "reason",
+    "refmt",
+    "code formatter"
   ],
   "author": "glennsl",
   "license": "MIT",
+  "homepage": "https://github.com/glennsl/bs-refmt#readme",
+  "bugs": "https://github.com/glennsl/bs-refmt/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glennsl/bs-refmt.git"
+  },
   "devDependencies": {
     "bs-platform": "^2.1.0"
   },
