@@ -38,8 +38,22 @@ function parseREI(param) {
               }), param);
 }
 
-exports._wrap    = _wrap;
+function printML(prim) {
+  return Reason.printML(prim);
+}
+
+function printRE(prim) {
+  return Reason.printRE(prim);
+}
+
+function printREI(prim) {
+  return Reason.printREI(prim);
+}
+
 exports.parseML  = parseML;
 exports.parseRE  = parseRE;
 exports.parseREI = parseREI;
+exports.printML  = printML;
+exports.printRE  = printRE;
+exports.printREI = printREI;
 /* reason Not a pure module */
