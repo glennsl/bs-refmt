@@ -13,7 +13,26 @@ function _wrap(f, x) {
   catch (raw_exn){
     var exn = Js_exn.internalToOCamlException(raw_exn);
     if (exn[0] === Js_exn.$$Error) {
-      return /* Error */Block.__(1, [exn[1]]);
+      var e = exn[1];
+      var match = e.location;
+      var match$1 = e.location;
+      return /* Error */Block.__(1, [/* record */[
+                  /* message */e.message,
+                  /* from */(match == null) ? /* record */[
+                      /* line */0,
+                      /* column */0
+                    ] : /* record */[
+                      /* line */match.startLine,
+                      /* column */match.startLineStartChar
+                    ],
+                  /* until */(match$1 == null) ? /* record */[
+                      /* line */0,
+                      /* column */0
+                    ] : /* record */[
+                      /* line */match$1.endLine,
+                      /* column */match$1.endLineEndChar
+                    ]
+                ]]);
     } else {
       throw exn;
     }

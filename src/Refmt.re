@@ -1,5 +1,19 @@
 type ast;
-type error = {.
+
+type  location = {
+  line: int,
+  column: int
+};
+
+type error = {
+  message: string,
+  from: location,
+  until: location
+};
+
+type result = Js.Result.t(ast, error);
+
+type internalError = {.
   "message": string,
   "location": Js.nullable({.
     "startLine": int,
@@ -9,17 +23,35 @@ type error = {.
   })
 };
 
+external unsafeAsError : Js.Exn.t => internalError = "%identity";
+
+let _wrap: ('a => 'b) => 'a => Js.Result.t('b, error) = (f, x) =>
+  try (Ok(f(x))) {
+  | Js.Exn.Error(e) => {
+      let err = unsafeAsError(e);
+
+      Error({
+        message: err##message,
+        from:
+          switch (Js.Nullable.to_opt(err##location)) {
+          | Some(l) => { line: l##startLine, column: l##startLineStartChar }
+          | None    => { line: 0, column: 0 }
+          },
+        until:
+          switch (Js.Nullable.to_opt(err##location)) {
+          | Some(l) => { line: l##endLine, column: l##endLineEndChar }
+          | None    => { line: 0, column: 0 }
+          }
+      });
+    }
+  };
+
 [@bs.val] [@bs.module "reason"] external parseML : string => ast = "";
 [@bs.val] [@bs.module "reason"] external parseRE : string => ast = "";
 [@bs.val] [@bs.module "reason"] external parseREI : string => ast = "";
 [@bs.val] [@bs.module "reason"] external printML : ast => string = "";
 [@bs.val] [@bs.module "reason"] external printRE : ast => string = "";
 [@bs.val] [@bs.module "reason"] external printREI : ast => string = "";
-
-let _wrap: ('a => 'b) => 'a => Js.Result.t('b, error) = (f, x) =>
-  try (Ok(f(x))) {
-  | Js.Exn.Error(e) => Error(Obj.magic(e))
-  };
 
 let parseML = _wrap(parseML);
 let parseRE = _wrap(parseRE);

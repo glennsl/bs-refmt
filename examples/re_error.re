@@ -10,4 +10,4 @@ let ocamlCode  = {|
 let reasonCode =
   ocamlCode |> Refmt.parseRE
             |> fun | Ok(_)  => failwith("unreachable")
-                   | Error(e) => Js.log2("Error: ", e##message)
+                   | Error({ message }) => Js.log2("Error: ", message)

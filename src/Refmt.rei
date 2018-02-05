@@ -1,13 +1,7 @@
-type ast;
-type error = {.
-  "message": string,
-  "location": Js.nullable({.
-    "startLine": int,
-    "startLineStartChar": int,
-    "endLine": int,
-    "endLineEndChar": int
-  })
-};
+type ast
+and  location = { line: int, column: int }
+and  error = { message: string, from: location, until: location }
+and  result = Js.Result.t(ast, error);
 
 let parseML  : string => Js.Result.t(ast, error);
 let parseRE  : string => Js.Result.t(ast, error);

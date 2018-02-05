@@ -11,7 +11,7 @@ var param = Refmt.parseML(ocamlCode);
 var reasonCode;
 
 if (param.tag) {
-  console.log("Error: ", param[0].message);
+  console.log("Error: ", param[0][/* message */0]);
   reasonCode = /* () */0;
 } else {
   reasonCode = Pervasives.failwith("unreachable");

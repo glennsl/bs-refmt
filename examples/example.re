@@ -9,4 +9,4 @@ let ocamlCode  = {|
 let reasonCode =
   ocamlCode |> Refmt.parseML
             |> fun | Ok(ast)  => ast |> Refmt.printRE |> Js.log
-                   | Error(e) => Js.log2("Error: ", e)
+                   | Error({ message }) => Js.log2("Error: ", message)
