@@ -11,8 +11,6 @@ Run `npm install --save glennsl/bs-refmt` and add `bs-refmt` to the `bs-dependen
 ## Example
 
 ```reason
-[@bs.val] external eval : string => 'a = "";
-
 let ocamlCode  = {|
   let hello thing =
     Js.log {j|Hello $thing!|j}
@@ -23,5 +21,9 @@ let ocamlCode  = {|
 
 let reasonCode =
   ocamlCode |> Refmt.parseML
-            |> Refmt.printRE;
+            |> fun | Ok(ast)  =>
+                     ast |> Refmt.printRE |> Js.log
+
+                   | Error(`RefmtParseError({ message })) =>
+                     Js.log2("Error: ", message)
 ```
