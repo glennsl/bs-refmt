@@ -10,7 +10,7 @@ var param = Refmt.parseML(ocamlCode);
 var reasonCode;
 
 if (param.tag) {
-  console.log("Error: ", param[0][/* message */0]);
+  console.log("Error: ", param[0][1][/* message */0]);
   reasonCode = /* () */0;
 } else {
   console.log(Refmt.printRE(param[0]));

@@ -16,22 +16,25 @@ function _wrap(f, x) {
       var e = exn[1];
       var match = e.location;
       var match$1 = e.location;
-      return /* Error */Block.__(1, [/* record */[
-                  /* message */e.message,
-                  /* from */(match == null) ? /* record */[
-                      /* line */0,
-                      /* column */0
-                    ] : /* record */[
-                      /* line */match.startLine,
-                      /* column */match.startLineStartChar
-                    ],
-                  /* until */(match$1 == null) ? /* record */[
-                      /* line */0,
-                      /* column */0
-                    ] : /* record */[
-                      /* line */match$1.endLine,
-                      /* column */match$1.endLineEndChar
-                    ]
+      return /* Error */Block.__(1, [/* `RefmtParseError */[
+                  -927764849,
+                  /* record */[
+                    /* message */e.message,
+                    /* from */(match == null) ? /* record */[
+                        /* line */0,
+                        /* column */0
+                      ] : /* record */[
+                        /* line */match.startLine,
+                        /* column */match.startLineStartChar
+                      ],
+                    /* until */(match$1 == null) ? /* record */[
+                        /* line */0,
+                        /* column */0
+                      ] : /* record */[
+                        /* line */match$1.endLine,
+                        /* column */match$1.endLineEndChar
+                      ]
+                  ]
                 ]]);
     } else {
       throw exn;

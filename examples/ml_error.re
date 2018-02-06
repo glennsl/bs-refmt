@@ -8,5 +8,8 @@ let ocamlCode  = {|
 
 let reasonCode =
   ocamlCode |> Refmt.parseML
-            |> fun | Ok(_)  => failwith("unreachable")
-                   | Error({ message }) => Js.log2("Error: ", message)
+            |> fun | Ok(_)  =>
+                     failwith("unreachable")
+
+                   | Error(`RefmtParseError({ message })) =>
+                     Js.log2("Error: ", message)
