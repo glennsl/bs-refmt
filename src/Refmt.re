@@ -30,12 +30,12 @@ let _wrap: ('a => 'b) => 'a => Js.Result.t('b, [> `RefmtParseError(error)]) = (f
       Error(`RefmtParseError({
         message: err##message,
         from:
-          switch (Js.Nullable.to_opt(err##location)) {
+          switch (Js.Nullable.toOption(err##location)) {
           | Some(l) => { line: l##startLine, column: l##startLineStartChar }
           | None    => { line: 0, column: 0 }
           },
         until:
-          switch (Js.Nullable.to_opt(err##location)) {
+          switch (Js.Nullable.toOption(err##location)) {
           | Some(l) => { line: l##endLine, column: l##endLineEndChar }
           | None    => { line: 0, column: 0 }
           }
