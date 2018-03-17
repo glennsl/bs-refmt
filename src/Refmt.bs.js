@@ -48,6 +48,12 @@ function parseML(param) {
               }), param);
 }
 
+function parseMLI(param) {
+  return _wrap((function (prim) {
+                return Reason.parseMLI(prim);
+              }), param);
+}
+
 function parseRE(param) {
   return _wrap((function (prim) {
                 return Reason.parseRE(prim);
@@ -64,6 +70,10 @@ function printML(prim) {
   return Reason.printML(prim);
 }
 
+function printMLI(prim) {
+  return Reason.printMLI(prim);
+}
+
 function printRE(prim) {
   return Reason.printRE(prim);
 }
@@ -73,9 +83,11 @@ function printREI(prim) {
 }
 
 exports.parseML = parseML;
+exports.parseMLI = parseMLI;
 exports.parseRE = parseRE;
 exports.parseREI = parseREI;
 exports.printML = printML;
+exports.printMLI = printMLI;
 exports.printRE = printRE;
 exports.printREI = printREI;
 /* reason Not a pure module */
