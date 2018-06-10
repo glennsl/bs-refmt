@@ -1,7 +1,7 @@
 {
   "name": "bs-refmt",
   "description": "BuckleScript bindings to refmt.js",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
@@ -21,7 +21,7 @@
     "url": "git+https://github.com/glennsl/bs-refmt.git"
   },
   "devDependencies": {
-    "bs-platform": "^2.2.2"
+    "bs-platform": "^3.1.5"
   },
   "dependencies": {
     "reason": "^3.1.0"

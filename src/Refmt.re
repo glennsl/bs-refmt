@@ -22,7 +22,7 @@ type internalError = {.
 
 external unsafeAsError : Js.Exn.t => internalError = "%identity";
 
-let _wrap: ('a => 'b) => 'a => Js.Result.t('b, [> `RefmtParseError(error)]) = (f, x) =>
+let _wrap: ('a => 'b) => 'a => Belt.Result.t('b, [> `RefmtParseError(error)]) = (f, x) =>
   try (Ok(f(x))) {
   | Js.Exn.Error(e) => {
       let err = unsafeAsError(e);
