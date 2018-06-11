@@ -1,7 +1,7 @@
 {
   "name": "bs-refmt",
   "description": "BuckleScript bindings to refmt.js",
-  "version": "1.0.0",
+  "version": "0.3.0",
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
